@@ -16,7 +16,6 @@ Insumos esperados (dados do processo):
 
 from __future__ import annotations
 
-from typing import Optional
 
 from radar.tc_analise import AnaliseTC
 
@@ -259,7 +258,7 @@ def gerar_resposta_impugnacao(dados: dict) -> str:
 
 
 def gerar_analise_recurso_contraposicoes(
-    dados: dict, analise: Optional[AnaliseTC] = None
+    dados: dict, analise: AnaliseTC | None = None
 ) -> str:
     """Análise e Decisão de Recurso e Contraposições."""
     dados = dados or {}

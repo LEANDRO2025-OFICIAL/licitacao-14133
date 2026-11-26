@@ -12,7 +12,6 @@ from __future__ import annotations
 
 import unicodedata
 from enum import Enum
-from typing import Optional
 
 
 def _norm(texto: str) -> str:
@@ -44,7 +43,7 @@ _VALORES = {
 
 
 def classificar_entidade(
-    orgao: Optional[str] = None, entidade: Optional[str] = None
+    orgao: str | None = None, entidade: str | None = None
 ) -> TipoEntidade:
     """Classifica o nível do órgão: municipal, estadual ou federal."""
     if entidade:

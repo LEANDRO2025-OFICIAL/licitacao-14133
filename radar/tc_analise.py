@@ -9,7 +9,6 @@ com pontos específicos por nível.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import List, Optional
 
 from radar.entidade import TipoEntidade, nivel_tribunal_de_contas
 
@@ -25,11 +24,11 @@ class PontoCritico:
 class AnaliseTC:
     entidade: TipoEntidade
     tribunal_de_contas: str
-    pontos: List[PontoCritico]
-    observacoes: List[str] = field(default_factory=list)
+    pontos: list[PontoCritico]
+    observacoes: list[str] = field(default_factory=list)
 
 
-def _pontos_base() -> List[PontoCritico]:
+def _pontos_base() -> list[PontoCritico]:
     return [
         PontoCritico(
             "tc-01",
@@ -64,7 +63,7 @@ def _pontos_base() -> List[PontoCritico]:
     ]
 
 
-def _pontos_municipal() -> List[PontoCritico]:
+def _pontos_municipal() -> list[PontoCritico]:
     return [
         PontoCritico(
             "tc-m01",
@@ -84,7 +83,7 @@ def _pontos_municipal() -> List[PontoCritico]:
     ]
 
 
-def _pontos_estadual() -> List[PontoCritico]:
+def _pontos_estadual() -> list[PontoCritico]:
     return [
         PontoCritico(
             "tc-e01",
@@ -104,7 +103,7 @@ def _pontos_estadual() -> List[PontoCritico]:
     ]
 
 
-def _pontos_federal() -> List[PontoCritico]:
+def _pontos_federal() -> list[PontoCritico]:
     return [
         PontoCritico(
             "tc-u01",
@@ -119,7 +118,7 @@ def _pontos_federal() -> List[PontoCritico]:
     ]
 
 
-def analise_critica(entidade: TipoEntidade, dados: Optional[dict] = None) -> AnaliseTC:
+def analise_critica(entidade: TipoEntidade, dados: dict | None = None) -> AnaliseTC:
     """Análise crítica: pontos que o tribunal de contas correto apontaria."""
     dados = dados or {}
     pontos = _pontos_base()
