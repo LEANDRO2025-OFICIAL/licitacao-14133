@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import argparse
 import json
-from typing import Optional
 
 from radar import documentos
 from radar.entidade import classificar_entidade
@@ -31,7 +30,7 @@ def cmd_gerar(documento: str, dados_path: str) -> str:
 
 
 def cmd_tc_analise(
-    orgao: Optional[str], entidade: Optional[str], dados_path: Optional[str]
+    orgao: str | None, entidade: str | None, dados_path: str | None
 ) -> str:
     """Análise crítica do Tribunal de Contas aplicável ao órgão."""
     dados: dict = {}
@@ -57,14 +56,14 @@ def cmd_tc_analise(
     return "\n".join(linhas) + "\n"
 
 
-def main(argv: Optional[list] = None) -> int:
+def main(argv: list | None = None) -> int:
     parser = argparse.ArgumentParser(
         prog="radar",
         description="Radar de Licitações: elabora documentos do processo e aponta o TC aplicável.",
     )
     sub = parser.add_subparsers(dest="comando", required=True)
 
-    p_docs = sub.add_parser("docs", help="Lista os documentos geráveis")
+    sub.add_parser("docs", help="Lista os documentos geráveis")
 
     p_gerar = sub.add_parser("gerar", help="Gera um documento")
     p_gerar.add_argument("documento", choices=documentos.DOCUMENTOS)
